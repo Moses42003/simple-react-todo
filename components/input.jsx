@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 
-const Input = () => {
+const Input = ({value, onChangeText}) => {
   return (
     <View>
       <TextInput
@@ -20,6 +20,8 @@ const Input = () => {
           borderRadius: 10,
         }}
         placeholder="Add a new task"
+        value={value}
+        onChangeText={onChangeText}
       />
       
     </View>
