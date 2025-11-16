@@ -5,29 +5,25 @@ import Input from "../components/input";
 import Task from "../components/task";
 import AddBtn from "../components/button";
 import { Ionicons } from "@expo/vector-icons";
+import { getTasks, createTask } from "../apis";
 
 const Home = () => {
   // states
-  const [task, setTask] = useState([
-    // {
-    //   id: 1,
-    //   name: "First Task added",
-    //   isComplete: false,
-    //   completedAt: null,
-    // },
-    // {
-    //   id: 2,
-    //   name: "Second Task added",
-    //   isComplete: false,
-    //   completedAt: null,
-    // },
-    // {
-    //   id: 3,
-    //   name: "Third Task added",
-    //   isComplete: false,
-    //   completedAt: null,
-    // },
-  ]);
+  const [task, setTask] = useState([]);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
+    const data = await getTasks();
+    setTask(data);
+  }
+
+  async function addTask() {
+    const newTask = await createTask("New task");
+    setTask([...task, newTask]);
+  }
+
   // const pendingTasks = task.filter((t) => !t.isComplete);
   // const completedTasks = task.filter((t) => t.isComplete);
 
